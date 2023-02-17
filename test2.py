@@ -24,7 +24,7 @@ ssh.connect(host, port=port, username=username, password=password)
 
 # Création du dossier "test" dans le répertoire distant
 command = 'mkdir ~/Téléchargements/test'
-test_folder= '~/Téléchargements/test'
+test_folder= 'Téléchargements/test'
 stdin, stdout, stderr = ssh.exec_command(command)
 
 # Copie du logiciel sur le serveur distant
@@ -50,6 +50,8 @@ while not stdout.channel.exit_status_ready():
         break
 
 # Copie des fichiers depuis le serveur distant vers le répertoire local
+print(test_folder)
+print(local_path)
 with scp.SCPClient(ssh.get_transport()) as scp_client:
     scp_client.get(test_folder, local_path, recursive=True)
 
