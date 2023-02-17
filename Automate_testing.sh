@@ -12,8 +12,9 @@ username="cyber"
 password="admin"
 
 # Répertoire local contenant le logiciel à copier
+script="name_of_the_script.sh"
 cwd=$(pwd)
-script_path="$cwd/test.sh"
+script_path="$cwd/$script"
 echo -e "${GREEN}Local path: $cwd${NC}"
 
 # Répertoire distant où copier le logiciel
@@ -40,7 +41,7 @@ fi
 
 # Donner la permission d'exécution au fichier "test.sh"
 echo "Granting execution permission to remote script..."
-if sshpass -p "$password" ssh -o StrictHostKeyChecking=no "$username"@"$host" -p "$port" "chmod +x ~/Téléchargements/test/test.sh"; then
+if sshpass -p "$password" ssh -o StrictHostKeyChecking=no "$username"@"$host" -p "$port" "chmod +x ~/Téléchargements/test/$script"; then
     echo -e "${GREEN} Permission granted to execute script.${NC}"
 else
     echo -e "${RED} Failed to grant permission to execute script.${NC}"
@@ -49,7 +50,7 @@ fi
 
 # Exécution du logiciel sur le serveur distant
 echo "Executing script on remote server..."
-if sshpass -p "$password" ssh -o StrictHostKeyChecking=no "$username"@"$host" -p "$port" "cd $remote_path && ./test.sh"; then
+if sshpass -p "$password" ssh -o StrictHostKeyChecking=no "$username"@"$host" -p "$port" "cd $remote_path && ./$script"; then
     echo -e "${GREEN} Script executed successfully.${NC}"
 else
     echo -e "${RED} Failed to execute script.${NC}"

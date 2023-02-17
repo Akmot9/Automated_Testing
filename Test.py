@@ -2,7 +2,7 @@ import os
 import json
 import csv
 
-dir_path = 'test'
+dir_path = 'test_ihm'
 
 # Check for JSON files
 for file_name in os.listdir(dir_path):
