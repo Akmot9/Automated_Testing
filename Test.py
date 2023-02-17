@@ -1,19 +1,27 @@
-import json
 import os
+import json
+import csv
 
-# Folder containing the JSON files
-folder = 'test'
+dir_path = 'test'
 
-# Loop through all the files in the folder
-for file in os.listdir(folder):
-    # Check if the file is a JSON file
-    if file.endswith('.json'):
-        # Open the JSON file
-        file_path = os.path.join(folder, file)
-        with open(file_path, 'r') as f:
-            try:
-                # Parse the JSON file
+# Check for JSON files
+for file_name in os.listdir(dir_path):
+    if file_name.endswith('.json'):
+        file_path = os.path.join(dir_path, file_name)
+        try:
+            with open(file_path) as f:
                 data = json.load(f)
-                print("The JSON file", file, "is readable.")
-            except json.JSONDecodeError:
-                print("The JSON file", file, "is not readable.")
+                print(f"{file_name}: JSON file is readable")
+        except Exception as e:
+            print(f"{file_name}: JSON file is not readable. Error: {e}")
+
+# Check for CSV files
+for file_name in os.listdir(dir_path):
+    if file_name.endswith('.csv'):
+        file_path = os.path.join(dir_path, file_name)
+        try:
+            with open(file_path, newline='') as f:
+                reader = csv.reader(f)
+                print(f"{file_name}: CSV file is readable")
+        except Exception as e:
+            print(f"{file_name}: CSV file is not readable. Error: {e}")
