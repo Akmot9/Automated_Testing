@@ -16,13 +16,16 @@ printf "Voulez vous faire un :\n    1. relevé json\n    2. relevé de csv\n    
 read option2
 
 # Prompt the user for three letters
-read -p "Entrez trois lettres: " lettres
+printf "Entrez trois lettres: "
+read lettres
 
 # Prompt the user for two letters
-read -p "Entrez deux lettres: " lettres2
+printf "Entrez deux lettres: "
+read lettres2
 
 # Prompt the user for six numbers
-read -p "Entrez six chiffres: " chiffres
+printf "Entrez six chiffres: "
+read  chiffres
 
 echo "Vous avez choisi l'option $option et l'option $option2."
 echo "Les lettres que vous avez entrées sont $lettres et $lettres2."
